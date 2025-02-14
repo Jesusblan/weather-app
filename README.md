@@ -1,2 +1,3 @@
-# project-template
-template with basic files and configurations for future projects
+# weather app
+weather app using asynchronous functions and fetching data from apis
+JS CSS HTML
