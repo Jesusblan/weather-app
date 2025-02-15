@@ -14,3 +14,8 @@ class location {
         this.icon = icon;
     }
 }
+
+function saveData(place, temp, maxTemp, minTemp, precipitation, precipitationProb, humidity, windSpeed, conditions, description, icon){
+    let data =  new location(place, temp, maxTemp, minTemp, precipitation, precipitationProb, humidity, windSpeed, conditions, description, icon);
+    return data
+}
