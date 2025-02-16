@@ -1,4 +1,5 @@
-storage = [];
+import { renderHome } from "./index.js";
+export const storage = [];
 
 class location {
     constructor(place, temp, feelTemp, precipitation, precipitationProb, humidity, windSpeed, conditions , description){
@@ -20,10 +21,11 @@ function saveData(place, temp, feelTemp, precipitation, precipitationProb, humid
 }
 
 
-fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/cadiz?unitGroup=us&key=PWUP89HBNGTGDR8K4BYC8LYPX&contentType=json', {mode: 'cors'})
+fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/cadiz?unitGroup=us&key=PWUP89HBNGTGDR8K4BYC8LYPX&contentType=json", {mode: "cors"})
 .then(function(response) {
     return response.json();
 })
+
 .then(function(response) {
     let place = response.address;
     let temp = response.currentConditions.temp;
@@ -36,7 +38,27 @@ fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/service
     let description = response.description;
 
     saveData(place, temp, feelTemp, precipitation, precipitationProb, humidity, windSpeed, conditions, description)
-    console.log(response)
-    console.log(storage)
 });
+
+fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/sevilla?unitGroup=us&key=PWUP89HBNGTGDR8K4BYC8LYPX&contentType=json", {mode: "cors"})
+.then(function(response) {
+    return response.json();
+})
+
+.then(function(response) {
+    let place = response.address;
+    let temp = response.currentConditions.temp;
+    let feelTemp = response.currentConditions.feelslike;
+    let precipitation = response.currentConditions.precip;
+    let precipitationProb = response.currentConditions.precipprob;
+    let humidity = response.currentConditions.humidity;
+    let windSpeed = response.currentConditions.windspeed;
+    let conditions = response.currentConditions.conditions;
+    let description = response.description;
+
+    saveData(place, temp, feelTemp, precipitation, precipitationProb, humidity, windSpeed, conditions, description)
+})
+.then(function(response){
+renderHome();
+})
 
