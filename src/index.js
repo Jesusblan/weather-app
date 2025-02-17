@@ -17,6 +17,7 @@ const container = document.getElementById("container");
 function renderHome(){
     storage.forEach(data =>{
     let defaultCard = document.createElement("div")
+    defaultCard.classList.add("card")
     defaultCard.innerHTML = `
     <h2>${data.place}</h2>
     <h4>${data.conditions}</h4>
